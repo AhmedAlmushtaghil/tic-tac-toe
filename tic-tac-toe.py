@@ -18,4 +18,21 @@ def print_board(bd):
     print(' --- + ---- + --- ')
     print(bd['7'] + '    |   ' + bd['8'] + '  |   ' + bd['9'])
 
-print_board(board)
+# Initialize the game
+
+def game():
+    player = 'X'
+    turns = 0
+
+    for i in range(10):
+        print_board(board)
+        print("Player: " + player + ", select a cell number. ")
+        selection = input()
+
+        if board[selection] == ' ':
+            board[selection] = player
+            turns += 1
+        else:
+            print("Cell is filled with " + player + ", select a different number. ")
+            continue
+
