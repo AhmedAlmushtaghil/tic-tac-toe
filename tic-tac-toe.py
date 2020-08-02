@@ -11,16 +11,15 @@ for key in board:
 
 # Print the board 
 
-def print_board(bd):
-    print('  ' + bd['1'] + '  |  ' + bd['2'] + '  |  ' + bd['3'])
+def print_board(brd):
+    print('  ' + brd['1'] + '  |  ' + brd['2'] + '  |  ' + brd['3'])
     print(' --- + --- + --- ')
-    print('  ' + bd['4'] + '  |  ' + bd['5'] + '  |  ' + bd['6'])
+    print('  ' + brd['4'] + '  |  ' + brd['5'] + '  |  ' + brd['6'])
     print(' --- + --- + --- ')
-    print('  ' + bd['7'] + '  |  ' + bd['8'] + '  |  ' + bd['9'])
+    print('  ' + brd['7'] + '  |  ' + brd['8'] + '  |  ' + brd['9'])
 
 # Initialize the game
-
-def game():
+def play_game():
     player = 'X'
     turns = 0
 
@@ -35,4 +34,52 @@ def game():
         else:
             print("\nCell is filled with " + player + ", select a different number.\n")
             continue
+
+        check_winner(board, turns, player)
+
+        # Switch turn to the other player
+        if player == 'X':
+            player = 'O'
+        else:
+            player = 'X'
+
+# Create win message
+def win_message(brd, plyr):
+    print_board(brd)
+    print("\nThe game has ended.")
+    print("Congratulations! Player " + plyr + " has won.")
+
+def check_winner(brd, trns, plyr):
+    # A win will happen after at least 5 turns
+    if trns > 4 and trns < 9:
+        # Check all winning possibilities
+        # Horizontal
+        if board['1'] == board['2'] == board['3']: 
+            win_message(brd, plyr)
+            return 1
+        elif board['4'] == board['5'] == board['6']: 
+            win_message(brd, plyr)
+            return 1
+        elif board['7'] == board['8'] == board['9']: 
+            win_message(brd, plyr)
+            return 1
+        
+        # Vertical
+        elif board['1'] == board['4'] == board['7']: 
+            win_message(brd, plyr)
+            return 1
+        elif board['2'] == board['5'] == board['8']: 
+            win_message(brd, plyr)
+            return 1
+        elif board['3'] == board['6'] == board['9']: 
+            win_message(brd, plyr)
+            return 1
+        
+        # Diagonal
+        elif board['1'] == board['5'] == board['9']: 
+            win_message(brd, plyr)
+            return 1
+        elif board['3'] == board['5'] == board['7']: 
+            win_message(brd, plyr)
+            return 1
 
