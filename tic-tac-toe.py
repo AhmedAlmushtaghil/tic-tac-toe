@@ -89,5 +89,12 @@ def play_game():
         else:
             player = 'X'
 
+    # Restart game
+    restart_game = input("\nDo you want to play again? (y/n)")
+    if restart_game == 'y':
+        for key in keys:
+            board[key] = ' '
+        play_game()
+
 if __name__ == "__main__":
     play_game()
