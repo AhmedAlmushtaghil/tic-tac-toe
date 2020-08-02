@@ -12,11 +12,11 @@ for key in board:
 # Print the board 
 
 def print_board(bd):
-    print(bd['1'] + '    |   ' + bd['2'] + '  |   ' + bd['3'])
-    print(' --- + ---- + --- ')
-    print(bd['4'] + '    |   ' + bd['5'] + '  |   ' + bd['6'])
-    print(' --- + ---- + --- ')
-    print(bd['7'] + '    |   ' + bd['8'] + '  |   ' + bd['9'])
+    print('  ' + bd['1'] + '  |  ' + bd['2'] + '  |  ' + bd['3'])
+    print(' --- + --- + --- ')
+    print('  ' + bd['4'] + '  |  ' + bd['5'] + '  |  ' + bd['6'])
+    print(' --- + --- + --- ')
+    print('  ' + bd['7'] + '  |  ' + bd['8'] + '  |  ' + bd['9'])
 
 # Initialize the game
 
@@ -26,13 +26,13 @@ def game():
 
     for i in range(10):
         print_board(board)
-        print("Player: " + player + ", select a cell number. ")
+        print("\nPlayer " + player + ", select a cell number.\n")
         selection = input()
 
         if board[selection] == ' ':
             board[selection] = player
             turns += 1
         else:
-            print("Cell is filled with " + player + ", select a different number. ")
+            print("\nCell is filled with " + player + ", select a different number.\n")
             continue
 
