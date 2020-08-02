@@ -35,51 +35,59 @@ def play_game():
             print("\nCell is filled with " + player + ", select a different number.\n")
             continue
 
-        check_winner(board, turns, player)
+        # A win will happen after at least 5 turns
+        if turns > 4 and turns < 9:
+            # Stop game flag
+            stop_flag = True
+
+            # Check all winning possibilities
+            # Horizontal
+            if board['1'] == board['2'] == board['3']: 
+                win_message(board, player)
+            elif board['4'] == board['5'] == board['6']: 
+                win_message(board, player)
+            elif board['7'] == board['8'] == board['9']: 
+                win_message(board, player)
+            
+            # Vertical
+            elif board['1'] == board['4'] == board['7']: 
+                win_message(board, player)
+            elif board['2'] == board['5'] == board['8']: 
+                win_message(board, player)
+            elif board['3'] == board['6'] == board['9']: 
+                win_message(board, player)
+            
+            # Diagonal
+            elif board['1'] == board['5'] == board['9']: 
+                win_message(board, player)
+            elif board['3'] == board['5'] == board['7']: 
+                win_message(board, player)
+
+            else:
+                stop_flag = False
+
+            # Stop game if ended
+            if stop_flag:
+                break
+
+        # Check the tie possibility
+        elif turns == 9:
+            print_board(board)
+            print("\nThe game has ended.")
+            print("The result is a TIE.")
+            break
+
+        # Create win message
+        def win_message(brd, plyr):
+            print_board(brd)
+            print("\nThe game has ended.")
+            print("Congratulations! Player " + plyr + " has WON.")
 
         # Switch turn to the other player
         if player == 'X':
             player = 'O'
         else:
             player = 'X'
-
-def check_winner(brd, trns, plyr):
-    # A win will happen after at least 5 turns
-    if trns > 4 and trns < 9:
-        # Check all winning possibilities
-        # Horizontal
-        if board['1'] == board['2'] == board['3']: 
-            win_message(brd, plyr)
-        elif board['4'] == board['5'] == board['6']: 
-            win_message(brd, plyr)
-        elif board['7'] == board['8'] == board['9']: 
-            win_message(brd, plyr)
-        
-        # Vertical
-        elif board['1'] == board['4'] == board['7']: 
-            win_message(brd, plyr)
-        elif board['2'] == board['5'] == board['8']: 
-            win_message(brd, plyr)
-        elif board['3'] == board['6'] == board['9']: 
-            win_message(brd, plyr)
-        
-        # Diagonal
-        elif board['1'] == board['5'] == board['9']: 
-            win_message(brd, plyr)
-        elif board['3'] == board['5'] == board['7']: 
-            win_message(brd, plyr)
-
-    # Check the tie possibility
-    elif trns == 9:
-        print_board(brd)
-        print("\nThe game has ended.")
-        print("The result is a TIE.")
-
-# Create win message
-def win_message(brd, plyr):
-    print_board(brd)
-    print("\nThe game has ended.")
-    print("Congratulations! Player " + plyr + " has WON.")
 
 if __name__ == "__main__":
     play_game()
