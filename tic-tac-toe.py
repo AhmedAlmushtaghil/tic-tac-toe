@@ -36,52 +36,50 @@ def play_game():
             continue
 
         # A win will happen after at least 5 turns
-        if turns > 4 and turns < 9:
-            # Stop game flag
-            stop_flag = True
-
+        if turns >= 5:
             # Check all winning possibilities
             # Horizontal
-            if board['1'] == board['2'] == board['3']: 
+            if board['1'] == board['2'] == board['3'] == player: 
                 win_message(board, player)
-            elif board['4'] == board['5'] == board['6']: 
+                break
+            elif board['4'] == board['5'] == board['6'] == player: 
                 win_message(board, player)
-            elif board['7'] == board['8'] == board['9']: 
+                break
+            elif board['7'] == board['8'] == board['9'] == player: 
                 win_message(board, player)
+                break
             
             # Vertical
-            elif board['1'] == board['4'] == board['7']: 
+            elif board['1'] == board['4'] == board['7'] == player: 
                 win_message(board, player)
-            elif board['2'] == board['5'] == board['8']: 
+                break
+            elif board['2'] == board['5'] == board['8'] == player: 
                 win_message(board, player)
-            elif board['3'] == board['6'] == board['9']: 
+                break
+            elif board['3'] == board['6'] == board['9'] == player: 
                 win_message(board, player)
+                break
             
             # Diagonal
-            elif board['1'] == board['5'] == board['9']: 
+            elif board['1'] == board['5'] == board['9'] == player: 
                 win_message(board, player)
-            elif board['3'] == board['5'] == board['7']: 
+                break
+            elif board['3'] == board['5'] == board['7'] == player: 
                 win_message(board, player)
-
-            else:
-                stop_flag = False
-
-            # Stop game if ended
-            if stop_flag:
                 break
 
-        # Check the tie possibility
-        elif turns == 9:
-            print_board(board)
-            print("\nThe game has ended.")
-            print("The result is a TIE.")
-            break
+            # Check the tie possibility
+            elif turns == 9:
+                print_board(board)
+                print("\nThe game has ended.y")
+                print("\nThe result is a TIE.")
+                break
 
         # Create win message
         def win_message(brd, plyr):
             print_board(brd)
             print("\nThe game has ended.")
-            print("Congratulations! Player " + plyr + " has WON.")
+            print("\nCongratulations! Player " + plyr + " has WON.")
 
         # Switch turn to the other player
         if player == 'X':
@@ -90,7 +88,8 @@ def play_game():
             player = 'X'
 
     # Restart game
-    restart_game = input("\nDo you want to play again? (y/n)")
+    print("\nDo you want to play again? (y/n)")
+    restart_game = input()
     if restart_game == 'y':
         for key in keys:
             board[key] = ' '
