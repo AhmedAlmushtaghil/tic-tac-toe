@@ -43,12 +43,6 @@ def play_game():
         else:
             player = 'X'
 
-# Create win message
-def win_message(brd, plyr):
-    print_board(brd)
-    print("\nThe game has ended.")
-    print("Congratulations! Player " + plyr + " has won.")
-
 def check_winner(brd, trns, plyr):
     # A win will happen after at least 5 turns
     if trns > 4 and trns < 9:
@@ -56,30 +50,36 @@ def check_winner(brd, trns, plyr):
         # Horizontal
         if board['1'] == board['2'] == board['3']: 
             win_message(brd, plyr)
-            return 1
         elif board['4'] == board['5'] == board['6']: 
             win_message(brd, plyr)
-            return 1
         elif board['7'] == board['8'] == board['9']: 
             win_message(brd, plyr)
-            return 1
         
         # Vertical
         elif board['1'] == board['4'] == board['7']: 
             win_message(brd, plyr)
-            return 1
         elif board['2'] == board['5'] == board['8']: 
             win_message(brd, plyr)
-            return 1
         elif board['3'] == board['6'] == board['9']: 
             win_message(brd, plyr)
-            return 1
         
         # Diagonal
         elif board['1'] == board['5'] == board['9']: 
             win_message(brd, plyr)
-            return 1
         elif board['3'] == board['5'] == board['7']: 
             win_message(brd, plyr)
-            return 1
 
+    # Check the tie possibility
+    elif trns == 9:
+        print_board(brd)
+        print("\nThe game has ended.")
+        print("The result is a TIE.")
+
+# Create win message
+def win_message(brd, plyr):
+    print_board(brd)
+    print("\nThe game has ended.")
+    print("Congratulations! Player " + plyr + " has WON.")
+
+if __name__ == "__main__":
+    play_game()
